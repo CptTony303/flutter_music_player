@@ -11,12 +11,15 @@ class MusicPlayerApp extends StatelessWidget {
   MusicPlayerApp({Key? key}) : super(key: key);
   final GlobalKey<MusicPlayerState> _musicPlayerState = GlobalKey<MusicPlayerState>();
   void skip_next(){
+    print('right');
     _musicPlayerState.currentState?.nextSong();
   }
   void skip_previous(){
+    print('left');
     _musicPlayerState.currentState?.previousSong();
   }
   void play_pause(){
+    print('nodded');
     _musicPlayerState.currentState?.playPause();
   }
   @override
@@ -29,7 +32,7 @@ class MusicPlayerApp extends StatelessWidget {
           ),
           body: Column(
             children: [
-              EarableControler(onNod: skip_next, onLeft: skip_previous, onRight: play_pause),
+              EarableControler(onNod: play_pause, onLeft: skip_previous, onRight:skip_next ),
               Expanded(child: MusicPlayer(key: _musicPlayerState))
             ]
           )),
